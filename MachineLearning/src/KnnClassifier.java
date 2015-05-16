@@ -44,12 +44,15 @@ public class KnnClassifier extends Classifier {
 				standardizedInstances.sort(i); //Sort so we can get the neighbors
 				for (int j = k; j < standardizedInstances.numInstances() - k; j++)
 				{
+					//TODO: Get the following to work: 
+					/*
 					//Record each neighbor and add to their respective overall distance
 					if (standardizedInstances.instance(j - k).attribute(i) <= filteredInstance.attribute(i) &&
 					    standardizedInstances.instance(j + k).attribute(i) >= filteredInstance.attribute(i))
 					{
 						//TODO: Finish this lab. The above won't work and I ran out of time. 
 					}
+					*/
 				}
 			}
 			

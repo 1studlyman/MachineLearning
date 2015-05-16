@@ -25,8 +25,8 @@ public class MachineLearning {
 		
 		//Randomize and divide into training and test sets
 		data.randomize(new Random());
-		Instances trainingData = new Instances(data, 0, 99);
-		Instances testingData  = new Instances(data, 99, 50);
+		Instances trainingData = new Instances(data, 0, 49);
+		Instances testingData  = new Instances(data, 49, 100);
 		
 		/*
 		//Hardcoded Classifier
@@ -34,13 +34,19 @@ public class MachineLearning {
 		hardcodeClassifier.buildClassifier(trainingData);
 		*/
 		
+		/*
 		//Knn Classifier
 		KnnClassifier knnClassifier = new KnnClassifier();
 		knnClassifier.buildClassifier(trainingData);
+		*/
+		
+		//ID3 Classifier
+		ID3Classifier id3 = new ID3Classifier();
+		id3.buildClassifier(trainingData);
 		
 		//Here's where we will run the evaluation
 		Evaluation evaluation = new Evaluation(testingData);
-		evaluation.evaluateModel(knnClassifier, testingData);
+		evaluation.evaluateModel(id3, testingData);
 	
 		//Print the results of the evaluation
 		System.out.println(evaluation.toSummaryString());
