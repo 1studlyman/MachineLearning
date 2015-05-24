@@ -40,13 +40,21 @@ public class MachineLearning {
 		knnClassifier.buildClassifier(trainingData);
 		*/
 		
+		/*
 		//ID3 Classifier
 		ID3Classifier id3 = new ID3Classifier();
 		id3.buildClassifier(trainingData);
+		*/
 		
-		//Here's where we will run the evaluation
+		//Neural Network Classifier
+		NeuralNetworkClassifier neuralNetworkClassifier = new NeuralNetworkClassifier();
+		neuralNetworkClassifier.buildClassifier(trainingData);
+		
+		
+		
+		//Here's where we will run the evaluation with
 		Evaluation evaluation = new Evaluation(testingData);
-		evaluation.evaluateModel(id3, testingData);
+		evaluation.evaluateModel(neuralNetworkClassifier, testingData);
 	
 		//Print the results of the evaluation
 		System.out.println(evaluation.toSummaryString());
