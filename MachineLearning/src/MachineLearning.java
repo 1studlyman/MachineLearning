@@ -1,8 +1,11 @@
 import weka.classifiers.Evaluation;
+import weka.classifiers.functions.MultilayerPerceptron;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.Attribute;
 import weka.core.FastVector;
+import weka.filters.unsupervised.attribute.NumericToNominal;
+
 import java.util.Random;
 
 public class MachineLearning {
@@ -25,8 +28,10 @@ public class MachineLearning {
 		
 		//Randomize and divide into training and test sets
 		data.randomize(new Random());
-		Instances trainingData = new Instances(data, 0, 49);
-		Instances testingData  = new Instances(data, 49, 100);
+		Instances trainingData = new Instances(data, 0, (data.numInstances()));
+		Instances testingData  = new Instances(data, 0, (data.numInstances()));
+		
+		System.out.println("Creating classifier");
 		
 		/*
 		//Hardcoded Classifier
@@ -47,10 +52,13 @@ public class MachineLearning {
 		*/
 		
 		//Neural Network Classifier
-		NeuralNetworkClassifier neuralNetworkClassifier = new NeuralNetworkClassifier();
+		//NeuralNetworkClassifier neuralNetworkClassifier = new NeuralNetworkClassifier();
+		//neuralNetworkClassifier.buildClassifier(trainingData);
+		
+		MultilayerPerceptron neuralNetworkClassifier = new MultilayerPerceptron();
 		neuralNetworkClassifier.buildClassifier(trainingData);
 		
-		
+		System.out.println("Evaluating the classifier");
 		
 		//Here's where we will run the evaluation with
 		Evaluation evaluation = new Evaluation(testingData);

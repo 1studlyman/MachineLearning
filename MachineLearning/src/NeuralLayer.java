@@ -3,8 +3,9 @@ import java.util.ArrayList;
 
 public class NeuralLayer {
 	
-	ArrayList <NeuralNode> neuralNodes = new ArrayList <NeuralNode>();
-	ArrayList <Double>     outputValues;
+	ArrayList <NeuralNode> neuralNodes  = new ArrayList <NeuralNode>();
+	ArrayList <Double>     inputValues  = new ArrayList <Double>();
+	ArrayList <Double>     outputValues = new ArrayList <Double>();
 	int       numInputs;
 	
 	NeuralLayer(int pNumInputs, int numNodes)
@@ -19,11 +20,16 @@ public class NeuralLayer {
 	
 	ArrayList <Double> evaluate(ArrayList <Double> inputs)
 	{
+		assert (neuralNodes.size() > 0);
 		assert (inputs.size() == neuralNodes.get(0).inputWeights.size());
+		
+		inputValues = inputs;
+		
+		outputValues.clear();
 		
 		for (int i = 0; i < neuralNodes.size(); i++)
 		{
-			outputValues.set(i, neuralNodes.get(i).evaluate(inputs));
+			outputValues.add(neuralNodes.get(i).evaluate(inputs));
 		}
 		
 		return outputValues;
